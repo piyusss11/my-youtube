@@ -1,10 +1,46 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
+import { useEffect, useState } from "react";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
+import SearchList from "./SearchList";
+import { cacheResults } from "../utils/searchSlice";
 
 function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchList, setSearchList] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const searchCache = useSelector((store) => store.search);
+
+  // console.log(searchQuery);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        getSearchSuggestions(searchCache[searchQuery]);
+      } else {
+        getSearchSuggestions();
+      }
+    }, 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery]);
+
+  const getSearchSuggestions = async () => {
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    // console.log(json[1]);
+    setSearchList(json[1]);
+    dispatch(cacheResults({
+      [searchQuery]:json[1]
+    }))
+    // setSearchQuery(json[1]);
+  };
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
+
   };
   return (
     <div className="flex justify-between px-5 py-3 ">
@@ -20,13 +56,31 @@ function Navbar() {
           alt=""
         />
       </div>
-      <div className="flex  ">
-        <input
-          className="w-96 border-2 rounded-full rounded-r-none  border-r-2"
-          type="text"
-          placeholder="  search.."
-        />
-        <i className="text-black cursor-pointer px-4 border-l-0 border-2 rounded-full rounded-l-none  text-2xl ri-search-line"></i>
+      <div className="">
+        <div className="flex">
+          <input
+            className="w-96 px-4 border-2 rounded-full rounded-r-none  border-r-2"
+            type="text"
+            placeholder="search.."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSuggestions(true)}
+            onMouseOver={() => setShowSuggestions(true)}
+            onMouseLeave={() => setShowSuggestions(false)}
+            // onBlur={()=>setShowSuggestions(false)}
+          />
+          <i className="text-black cursor-pointer px-4 border-l-0 border-2 rounded-full rounded-l-none  text-2xl ri-search-line"></i>
+        </div>
+        <div
+          onMouseOver={() => setShowSuggestions(true)}
+          onMouseLeave={() => setShowSuggestions(false)}
+          className="fixed bg-white w-96 rounded-xl border-gray-100"
+        >
+          {searchList.map(
+            (list, index) =>
+              showSuggestions && <SearchList key={index} info={list} />
+          )}
+        </div>
       </div>
       <div className="flex gap-4 ">
         <i className="text-2xl ri-notification-line"></i>

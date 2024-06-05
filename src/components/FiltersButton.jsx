@@ -11,7 +11,7 @@ function FiltersButton() {
     "Cooking",
   ];
   return (
-    <div className="flex m-4 gap-4">
+    <div className="flex m-4 px-20 gap-4">
       {list.map((name) => (
         <Button name={name} key={name} />
       ))}
