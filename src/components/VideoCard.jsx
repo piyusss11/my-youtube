@@ -1,7 +1,7 @@
 function VideoCard(props) {
   const { info } = props;
   const { snippet, statistics } = info;
-  const { publishedAt, title, thumbnails, channelTitle } = snippet;
+  const { title, thumbnails, channelTitle } = snippet;
   const { viewCount } = statistics;
 
   return (
@@ -20,8 +20,8 @@ function VideoCard(props) {
       </div>
       <h1 className="text-sm text-gray-500 px-2">{channelTitle}</h1>
       <div className="flex px-2">
-        <h1 className="text-sm text-gray-500">{viewCount}</h1>
-        <h1 className="text-sm text-gray-500">{publishedAt}</h1>
+        <h1 className="text-sm text-gray-500">{viewCount} views </h1>
+        {/* <h1 className="text-sm text-gray-500">{publishedAt}</h1> */}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ function Sidebar() {
   const isMenuOpen = useSelector(store => store.app.isMenuOpen);
   if(!isMenuOpen) return null
   return (
-    <div className="w-48 shadow-lg px-5 py-3 ">
+    <div className="w-48 shadow-lg px-5 py-3 z-10 ">
       <ul className="border-b-2 py-4 text-xl font-[500] ">
         <Link to={"/"}>
           
