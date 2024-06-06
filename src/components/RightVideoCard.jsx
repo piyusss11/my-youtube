@@ -3,7 +3,7 @@ function RightVideoCard(props) {
   const { snippet, statistics } = info;
   const { title, thumbnails, channelTitle } = snippet;
   const { viewCount } = statistics;
-  console.log(info);
+  // console.log(info);
 
   return (
     <div className="flex mt-4 h-24 w-[402px] rounded-xl">

@@ -4,6 +4,7 @@ import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 import { GOOGLE_API_KEY } from "../utils/constants";
 import WatchPageRightSection from "../components/WatchPageRightSection";
+import Comments from "../components/Comments";
 function WatchPage() {
   const [videoInfo, SetVideoInfo] = useState({});
   const [searchParams] = useSearchParams();
@@ -24,7 +25,7 @@ function WatchPage() {
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${GOOGLE_API_KEY}`
     );
     const json = await data.json();
-    console.log(json.items[0]);
+    // console.log(json.items[0]);
     SetVideoInfo(json.items[0]);
   };
   const { snippet /*, statistics*/ } = videoInfo;
@@ -55,7 +56,9 @@ function WatchPage() {
               Subscribe
             </button>
           </div>
-          <div>{/* need to make discrition section */}</div>
+          <div>
+            <Comments />
+          </div>
         </div>
       </section>
       <WatchPageRightSection />

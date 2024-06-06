@@ -10,7 +10,7 @@ function useGetPopularVideos() {
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEO_API);
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setVideosList(json.items);
   };
   return videosList
