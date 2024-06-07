@@ -61,7 +61,9 @@ function WatchPage() {
           </div>
         </div>
       </section>
-      <WatchPageRightSection />
+      <section>
+        <WatchPageRightSection />
+      </section>
     </div>
   );
 }
