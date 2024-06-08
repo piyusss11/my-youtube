@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { GOOGLE_API_KEY } from "../utils/constants";
 import WatchPageRightSection from "../components/WatchPageRightSection";
 import Comments from "../components/Comments";
+import LiveChat from "../components/LiveChat";
 function WatchPage() {
   const [videoInfo, SetVideoInfo] = useState({});
   const [searchParams] = useSearchParams();
@@ -29,7 +30,7 @@ function WatchPage() {
     SetVideoInfo(json.items[0]);
   };
   const { snippet /*, statistics*/ } = videoInfo;
-  console.log(snippet);
+  // console.log(snippet);
 
   return (
     <div className="mx-20 mt-5 flex">
@@ -62,6 +63,7 @@ function WatchPage() {
         </div>
       </section>
       <section>
+        <LiveChat />
         <WatchPageRightSection />
       </section>
     </div>

@@ -28,7 +28,7 @@ function Comments() {
 }
 
 function Comment({ info }) {
-  console.log(info);
+  // console.log(info);
   const { snippet } = info;
   const { topLevelComment } = snippet;
   const { textOriginal, authorDisplayName, authorProfileImageUrl, likeCount } =
@@ -37,7 +37,7 @@ function Comment({ info }) {
     <div>
       <div className="flex">
         <img
-          className="rounded-full w-10"
+          className="rounded-full w-10 h-10"
           src={authorProfileImageUrl}
           alt="asd"
         />

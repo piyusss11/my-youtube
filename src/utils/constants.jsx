@@ -15,3 +15,5 @@ export const YOUTUBE_SEARCH_RESULTS_API =
 
 export const YOUTUBE_COMMENT_API =
   "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=100&videoId=";
+
+export const LIVE_CHAT_LIMIT = 20;
