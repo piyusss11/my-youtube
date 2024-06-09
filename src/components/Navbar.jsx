@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import SearchList from "./SearchList";
 import { cacheResults } from "../utils/searchSlice";
+// import { Link } from "react-router-dom";
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,15 +33,16 @@ function Navbar() {
     const json = await data.json();
     // console.log(json[1]);
     setSearchList(json[1]);
-    dispatch(cacheResults({
-      [searchQuery]:json[1]
-    }))
+    dispatch(
+      cacheResults({
+        [searchQuery]: json[1],
+      })
+    );
     // setSearchQuery(json[1]);
   };
   const dispatch = useDispatch();
   const toggleMenuHandler = () => {
     dispatch(toggleMenu());
-
   };
   return (
     <div className="flex justify-between px-5 py-3 ">
@@ -49,12 +51,13 @@ function Navbar() {
           onClick={() => toggleMenuHandler()}
           className="cursor-pointer text-2xl ri-menu-line"
         ></i>
-
-        <img
-          className="w-24 cursor-pointer"
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
-          alt=""
-        />
+        {/* <Link to={"/"}> */}
+          <img
+            className="w-24 cursor-pointer"
+            src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
+            alt=""
+          />
+        {/* </Link> */}
       </div>
       <div className="">
         <div className="flex">

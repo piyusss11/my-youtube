@@ -31,7 +31,7 @@ function App() {
     <>
       <Provider store={store}>
         <Navbar />
-        <RouterProvider router={appRouter} />
+        <RouterProvider router={appRouter}></RouterProvider>
       </Provider>
     </>
   );
