@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
 import SearchList from "./SearchList";
 import { cacheResults } from "../utils/searchSlice";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -51,13 +51,13 @@ function Navbar() {
           onClick={() => toggleMenuHandler()}
           className="cursor-pointer text-2xl ri-menu-line"
         ></i>
-        {/* <Link to={"/"}> */}
+        <Link to={"/"}>
           <img
             className="w-24 cursor-pointer"
             src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg"
             alt=""
           />
-        {/* </Link> */}
+        </Link>
       </div>
       <div className="">
         <div className="flex">

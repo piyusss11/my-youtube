@@ -1,7 +1,5 @@
 // import { useState } from 'react'
-
 import "./App.css";
-import Navbar from "./components/Navbar";
 import Body from "./pages/Body";
 import { Provider } from "react-redux";
 import store from "./utils/store";
@@ -30,8 +28,7 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Navbar />
-        <RouterProvider router={appRouter}></RouterProvider>
+        <RouterProvider router={appRouter} />
       </Provider>
     </>
   );
